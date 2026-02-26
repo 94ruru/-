@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飲料選選樂 - 今天喝什麼？</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f8ff; }
+        .container { text-align: center; background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 400px; }
+        h1 { color: #ff6b6b; margin-bottom: 1.5rem; }
+        #result { font-size: 2rem; font-weight: bold; color: #4834d4; margin: 2rem 0; min-height: 3rem; }
+        button { background-color: #ff6b6b; color: white; border: none; padding: 1rem 2rem; font-size: 1.2rem; border-radius: 50px; cursor: pointer; transition: transform 0.2s; box-shadow: 0 4px 15px rgba(255,107,107,0.3); }
+        button:active { transform: scale(0.95); }
+        .list-hint { margin-top: 1.5rem; font-size: 0.8rem; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🥤 飲料選選樂</h1>
+    <p>解決你的選擇困難症！</p>
+    
+    <div id="result">準備好了嗎？</div>
+    
+    <button onclick="pickDrink()">幫我選一家！</button>
+
+    <div class="list-hint">包含 50嵐、清心、麻古、迷客夏等 20 家連鎖店</div>
+</div>
+
+<script>
+    const drinks = [
+        "50嵐", "清心福全", "麻古茶坊", "迷客夏 Milksha", "可不可熟成紅茶",
+        "茶の魔手", "CoCo 都可", "一沐日", "得正 Oolong Tea", "龜記茗品",
+        "萬波島嶼紅茶", "五桐號", "烏弄 UNONG", "天仁茗茶", "珍煮丹",
+        "春水堂", "大茗本位製茶堂", "八曜和茶", "再睡5分鐘", "COMEBUY"
+    ];
+
+    function pickDrink() {
+        const resultDiv = document.getElementById('result');
+        let count = 0;
+        
+        // 跑馬燈動畫效果
+        const interval = setInterval(() => {
+            const tempIndex = Math.floor(Math.random() * drinks.length);
+            resultDiv.innerText = drinks[tempIndex];
+            count++;
+            
+            if (count > 15) {
+                clearInterval(interval);
+                const finalIndex = Math.floor(Math.random() * drinks.length);
+                resultDiv.innerText = "🎯 " + drinks[finalIndex];
+                resultDiv.style.color = "#eb4d4b";
+            }
+        }, 100);
+    }
+</script>
+
+</body>
+</html>
